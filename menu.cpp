@@ -60,7 +60,10 @@ void menu()
 		}
 		break;
 		
-		default: cout << "Nie ma takiej opcji w menu";
+		default: 
+		{
+			cout << "Nie ma takiej opcji w menu";
+		}
 	}
 	system ("cls");
 }	

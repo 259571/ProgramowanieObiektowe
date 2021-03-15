@@ -8,7 +8,7 @@ using namespace std;
 
 void interfejs()
 {
-	cout << "Do czego sluzy program oraz co uzytkownik moze z nim zrobic" << endl;
+	
 	
 
 

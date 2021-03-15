@@ -2,8 +2,9 @@
 
 using namespace std;
 
-int wyswietlanietablicy()
+int wprowadzenie()
 {
-
-	return 0;
+	cout << "Patrzysz teraz na program, ktory jest arkuszem kalkulacyjnym" << endl;
+	cout << "Mozesz w nim edytowac i towrzyc arkusze" << endl;
+	
 }
