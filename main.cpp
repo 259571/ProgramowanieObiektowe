@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    tworz_arkusz();
+    menu();
 
     return 0;
 }
