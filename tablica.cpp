@@ -1,16 +1,12 @@
 #include <iostream>
+#include "tablica.h"
+#include "tablica_wysw.h"
 
 using namespace std;
 
-int main(void)
+double** tworz_tablice(int x, int y)
 {
-	// pobranie wymiarow tablicy 
-	int x, y;
-	cout << "Podaj liczbe wierszy: ";
-	cin >> x;
-	cout << "Podaj liczbe kolumn: ";
-	cin >> y;
-
+	
 	// zajmujje miejsce w pamieci na tablice 
 	double** tab = new double* [x];
 	for (int i = 0; i < x; ++i)
@@ -19,15 +15,11 @@ int main(void)
 		tab[i] = new double[y];
 		for (int j = 0; j < y; ++j) 
 			{
-				cout << "Podaj wartosc komorki: "  << i << ", " << j << ": ";
-				cin >> tab[i][j];
-			}
-			
+				wprowadz_wartosc(tab, i, j);
+	
+			}		
 	}
-	// wyswietlam tablice
-	for (int i = 0; i < x; ++i, cout << endl)
-		for (int j = 0; j < y; ++j)
-			cout << tab[i][j] << '\t';
+	
 
 
 	return 0;

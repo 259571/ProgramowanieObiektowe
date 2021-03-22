@@ -1,4 +1,7 @@
 #include <iostream>
+#include "tablica_wysw.h"
+#include "menu.h"
+#include "tablica.h"
 
 
 using namespace std;
@@ -65,6 +68,18 @@ void menu()
 			cout << "Nie ma takiej opcji w menu";
 		}
 	}
+
 	system ("cls");
 }	
 	
+double** tworz_arkusz()
+{
+	// pobranie wymiarow tablicy 
+	int x, y;
+	cout << "Podaj liczbe wierszy: ";
+	cin >> x;
+	cout << "Podaj liczbe kolumn: ";
+	cin >> y;
+
+	return tworz_tablice(x, y);
+}
