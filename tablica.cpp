@@ -20,6 +20,8 @@ double** tworz_tablice(int x, int y)
 			}		
 	}
 	
+	tablica_wysw (tab, x, y);
+
 
 
 	return 0;
