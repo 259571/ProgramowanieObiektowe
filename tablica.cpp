@@ -1,24 +1,28 @@
-#include <iostrema>
-
+#include <iostream>
 using namespace std;
-
-double tworzenie(int x, int y)
+int main(void)
 {
-	double tablica = new double[x];
-	for (int i = 0; i<y: i++)
-	{
-		tablica[i] = new double[y];
-	}
-	return tablica;
-}
-
-void zmiania_danych()
-{
-	int x, y;
-	cout << " Ktora komorke chcesz zmienic? " << endl;
-	cin >> x;
-	cin >> y;
-	cout << "Na jaka wartosc chcesz zmienic wybrana komorke? " << endl;
-	cin >> tablica[x][y]
 	
+	int x, y;
+	cout << "Liczba wierszy: ";
+	cin >> x;
+	cout << "Liczba kolumn: ";
+	cin >> y;
+
+
+	double** tab2 = new double* [x];
+	for (int i = 0; i < x; ++i)
+	{
+		tab2[i] = new double[y];
+		for (int j = 0; j < y; ++j) 
+			tab2[i][j] = (i + j) / 10.0;
+	}
+
+	for (int i = 0; i < x; ++i, cout << endl)
+		for (int j = 0; j < y; ++j)
+			cout << tab2[i][j] << '\t';
+
+
+	system("PAUSE");
+	return 0;
 }
