@@ -23,6 +23,5 @@ int main(void)
 			cout << tab2[i][j] << '\t';
 
 
-	system("PAUSE");
 	return 0;
 }
