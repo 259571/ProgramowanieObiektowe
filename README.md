@@ -22,3 +22,10 @@
 - wyswietlenie wyniku
 - Zapytaj uzytkownika czy chce powtorzyc proces
 
+## Pliki:
+
+- Wprowadzenie danych
+- W sytuacji, w której uzytkownik utowrzyl arkusz, sprawdzamy jego wielkosc:
+	- jesli nie jest zgodna z danymi w pliku, tworzy nowy arkusz, ktory zostanie  wyzerowany, nastepnie do stworzonego arkusza wprowadzi dane z pliku 
+	- jesli jest zgodna, arkusz zostanie wyzerowany i na koncu wprowadzenie danych z pliku 
+-Zapisanie wielkosci arkusza i jego wartosci w pliku tekstowym
