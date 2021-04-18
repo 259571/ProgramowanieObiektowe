@@ -39,7 +39,7 @@ void zmiana_rozmiaru (char znak)
 
 }
 
-void zmiana_elementu (char znak, int x, int y, float tablica[][])
+void zmiana_elementu (char znak, int x, int y, double** tablica)
 {
 	cout << "Wybrales opcje zmiany zawartosci tablicy" << endl;;
 			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
@@ -56,7 +56,7 @@ void zmiana_elementu (char znak, int x, int y, float tablica[][])
 
 
 
-void suma_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][])
+void suma_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
 {
 	cout << "3. Wybrales opje dodawania zawartosci komorek" << endl;
 			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
@@ -72,7 +72,7 @@ void suma_kom (char znak, int x, int y, int i, int j, float wynik, float tablica
 					cout << "Suma podanych komorek to: " << wynik = tablica[x][y] + tablica[i][j];
 }
 
-void odej_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][])
+void odej_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
 {
 	cout << "4. Wybrales opje odemjowania zawartosci komorek"<< endl;
 			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
@@ -91,7 +91,7 @@ void odej_kom (char znak, int x, int y, int i, int j, float wynik, float tablica
 }
 
 
-void mno_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][])
+void mno_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
 {
 	cout << "5. Wybrales opje mnozenia zawartosci komorek"<< endl;
 			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
@@ -109,7 +109,7 @@ void mno_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[
 }
 
 
-void dziel_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][])
+void dziel_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
 
 {
 	cout << "6. Wybrales opje dzielenia zawartosci komorek"<< endl;

@@ -42,31 +42,31 @@ void menu()
 
 		case 2:
 		{
-			void zmiana_elementu (char znak, int x, int y, float tablica[][]);
+			void zmiana_elementu (char znak, int x, int y, double** tablica);
 		}
 		break;
 
 		case 3:
 		{
-			void suma_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][]);
+			void suma_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica);
 		}
 		break;
 
 		case 4:
 		{
-			void odej_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][]);
+			void odej_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica);
 		}
 		break;
 
 		case 5:
 		{
-			void mno_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][]);
+			void mno_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica);
 		}
 		break;
 
 		case 6:
 		{
-			void dziel_kom (char znak, int x, int y, int i, int j, float wynik, float tablica[][]);
+			void dziel_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica);
 		}
 		break;
 
