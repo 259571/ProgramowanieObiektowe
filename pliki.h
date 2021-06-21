@@ -1,10 +1,13 @@
+#pragma once 
+#include "tablica.h"
 /// @file
+
 /** "wczyt_danych" tworzy arkusz o podanych rozmiarach, a jego zawartosc pobiera z pliku 
- *  @param[in,out] Arkusz program dostaje arkusz do edycji
+ *  @param[in,out] tablica program dostaje arkusz do edycji
  */
-void wczyt_danych (double**);
+int wczyt_danych (Tablica *tablica);
 
 /** "zapis_danych" wielkosc oraz zawartosc arkusza zostaje zapisana do pliku 
- *  @param[in] Arkusz  program dostaje arkusz do podgladu
+ *  @param[in] tablica program dostaje arkusz do podgladu
  */
-void zapis_danych (double**);
+int zapis_danych (Tablica *tablica);

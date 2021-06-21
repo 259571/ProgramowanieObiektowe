@@ -1,129 +1,279 @@
 #include <iostream>
+#include "tablica_wysw.h"
+#include "menu.h"
+#include "tablica.h"
+#include "pliki.h"
 
 using namespace std;
 
-int wprowadzenie()
-{
-	cout << "Patrzysz teraz na program, ktory jest arkuszem kalkulacyjnym" << endl;
-	cout << "Mozesz w nim edytowac i towrzyc arkusze" << endl;
-	
-	
-	return 0;
-}
+// FUNCJE ZWIAZANE Z TABLICA
 
-
-void wprowadz_wartosc(double** tablica, int x, int y)
-{
-	cout << "Podaj wartosc komorki: "  << x << ", " << y << ": ";
-				cin >> tablica[x][y];
-
-}
-
-void tablica_wysw (double** tablica, int x, int y)
+void tablica_wyswietlanie (Tablica tablica)
 {
 	// wyswietlam tablice
-	for (int i = 0; i < x; ++i, cout << endl)
-		for (int j = 0; j < y; ++j)
-			cout << tablica[i][j] << '\t';
+	for (int i = 0; i < tablica.get_wiersze(); ++i, cout << endl)
+	{
+		for (int j = 0; j < tablica.get_kolumny(); ++j)
+		{
+			cout << tablica.get_zawartosc_komorek(j, i) << '\t';
+		}
+		cout << endl;
+	}		
 }
 
-void zmiana_rozmiaru (char znak)
+Tablica tworz_arkusz()
 {
-	cout << "Wybrales opcje zmiany rozmiaru tablicy" << endl;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
+	// pobranie wymiarow tablicy
+	int x, y;
+	Tablica arkusz;
+	cout << "Podaj liczbe wierszy: ";
+	y = wprowadz();
+	cout << "Podaj liczbe kolumn: ";
+	x = wprowadz();
+	int *typykol = new int[x]; 
+	for (int i=0; i<x; i++)
+		{
+			cout <<"Jaka ma byc kolumna [" << i << "]. 0-int, 1-sting" << endl;
+			typykol[i] = wprowadz() ;
+
+		}
+	arkusz.tworz_tablice(x, y, typykol);
+
+	for (int i=0; i<y; i++)
+		{
+			for (int j=0; j<x; j++)
+			{
+				arkusz.set_zawartosc_komorek(j, i, wprowadz_wartosc(j, i));
+			}
+		}
+	return arkusz;
+}
+
+string wprowadz_wartosc(int x, int y)
+{
+
+	string wartosc;
+	cout << "Podaj wartosc komorki: ["  << x << "], [" << y << "]: ";
+				cin >> wartosc;
+	return wartosc;
+
+}
+
+int wprowadz()
+{
+    int x;
+    cin >> x;
+    while (!cin)
+	{
+      czysc();
+        cin >> x;    
+    }
+    return x;
+}
+
+void czysc()
+{
+    cin.clear();
+    cin.ignore(1000,'\n');
+}
+
+
+
+void zmiana_rozmiaru (int *nwiersze, int *nkolumny)
+{
+	cout << "1. Wybrales opcje zmiany rozmiaru tablicy" << endl;
+
+	cout << "Podaj nowa ilosc wierszy: " << endl;
+	cin >> *nwiersze;
+	cout << "Podaj nowa ilosc kolumn: " << endl;
+	cin >> *nkolumny;
+}
+
+void zmiana_elementu (Tablica *tablica)
+{
+	int ktorakolumna, ktorywiersz;
+	cout << "2. Wybrales opcje zmiany zawartosci komorek tablicy" << endl;;
 			
-				if (znak=='t' || znak=='T')
-					cout << "Podaj nowe wymary tablicy" << endl;
-				
-
-}
-
-void zmiana_elementu (char znak, int x, int y, double** tablica)
-{
-	cout << "Wybrales opcje zmiany zawartosci tablicy" << endl;;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
-			
-			if (znak=='t' || znak=='T')
-					cout << "Zawartosc ktorej komorki chcesz zmienic ?" << endl;
-					cin >> x;
-					cin >> y;
-					cout << "Wprowadz nowa wartosc komorki" << endl;
-					cin >> tablica[x][y];
+	cout << "Zawartosc ktorej komorki chcesz zmienic(kolumna, wiersz) ?" << endl;
+	cin >> ktorywiersz;
+	cin >> ktorakolumna;
+	
+	tablica->set_zawartosc_komorek(ktorywiersz, ktorakolumna, wprowadz_wartosc(ktorywiersz, ktorakolumna));
 }
 
 
 
 
-void suma_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
+
+// FUNKCJE MATEMATYCZNE
+
+void suma_kom (Tablica *tablica)
 {
+	int x, y, i, j;
+	double wynik;
 	cout << "3. Wybrales opje dodawania zawartosci komorek" << endl;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
 			
-				if (znak=='t' || znak=='T')
-					cout << "Podaj wspolrzedne pierwszej komorki" << endl;
-					cin >> x;
-					cin >> y;
-					cout << "Podaj wspolrzedne drugiej komorki" << endl;
-					cin >> i;
-					cin >> j;
-					cout << "Suma podanych komorek to: " << wynik = tablica[x][y] + tablica[i][j];
+	cout << "Podaj wspolrzedne pierwszej komorki" << endl;
+	cin >> x;
+	cin >> y;
+	cout << "Podaj wspolrzedne drugiej komorki" << endl;
+	cin >> i;
+	cin >> j;
+
+	if ((*tablica).get_typy_kol(x)==0 && (*tablica).get_typy_kol(i)==0 )
+	{
+		wynik = stod(tablica->get_zawartosc_komorek(x, y)) + stod(tablica->get_zawartosc_komorek(i, j));
+		cout << "Suma podanych komorek to: " << wynik;
+	}
+
+	else
+	{
+		cout <<"Podane komorki nie sa intami" << endl;
+	}
 }
 
-void odej_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
+
+void odej_kom (Tablica *tablica)
 {
+	int x, y, i, j;
+	double wynik;
 	cout << "4. Wybrales opje odemjowania zawartosci komorek"<< endl;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
 			
-				if (znak=='t' || znak=='T')
-					cout << "Podaj wspolrzedne pierwszej komorki" << endl;
-					cin >> x;
-					cin >> y;
-					cout << "Podaj wspolrzedne drugiej komorki" << endl;
-					cin >> i;
-					cin >> j;
-					cout << "Odemowanie podanych komorek to: " << wynik = tablica[x][y] - tablica[i][j];
+	cout << "Podaj wspolrzedne pierwszej komorki" << endl;
+	cin >> x;
+	cin >> y;
+	cout << "Podaj wspolrzedne drugiej komorki" << endl;
+	cin >> i;
+	cin >> j;
 
+		if ((*tablica).get_typy_kol(x)==0 && (*tablica).get_typy_kol(i)==0 )
+	{
+		wynik = stod(tablica->get_zawartosc_komorek(x, y)) - stod(tablica->get_zawartosc_komorek(i, j));
+		cout << "Roznica podanych komorek to: " << wynik;
+	}
 
+	else
+	{
+		cout <<"Podane komorki nie sa intami" << endl;
+	}
 }
 
 
-void mno_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
+void mno_kom (Tablica *tablica)
 {
+	int x, y, i, j;
+	double wynik;
 	cout << "5. Wybrales opje mnozenia zawartosci komorek"<< endl;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
 			
-				if (znak=='t' || znak=='T')
-					cout << "Podaj wspolrzedne pierwszej komorki" << endl;
-					cin >> x;
-					cin >> y;
-					cout << "Podaj wspolrzedne drugiej komorki" << endl;
-					cin >> i;
-					cin >> j;
-					cout << "Mnozenie podanych komorek to: " << wynik = tablica[x][y] * tablica[i][j];
+	cout << "Podaj wspolrzedne pierwszej komorki" << endl;
+	cin >> x;
+	cin >> y;
+	cout << "Podaj wspolrzedne drugiej komorki" << endl;
+	cin >> i;
+	cin >> j;
+
+		if ((*tablica).get_typy_kol(x)==0 && (*tablica).get_typy_kol(i)==0 )
+	{
+		wynik = stod(tablica->get_zawartosc_komorek(x, y)) * stod(tablica->get_zawartosc_komorek(i, j));
+		cout << "Mnozenie podanych komorek to: " << wynik;
+	}
+
+	else
+	{
+		cout <<"Podane komorki nie sa intami" << endl;
+	}
 
 }
 
 
-void dziel_kom (char znak, int x, int y, int i, int j, float wynik, double** tablica)
+void dziel_kom (Tablica *tablica)
 
 {
+	int x, y, i, j;
+	double wynik;
 	cout << "6. Wybrales opje dzielenia zawartosci komorek"<< endl;
-			cout << "Jesli chcesz kontynuowac nacisnij T, jesli chcesz wrocic do menu nacisnij N" << endl;
-			cin >> znak;
 			
-				if (znak=='t' || znak=='T')
-					cout << "Podaj wspolrzedne pierwszej komorki" << endl;
-					cin >> x;
-					cin >> y;
-					cout << "Podaj wspolrzedne drugiej komorki" << endl;
-					cin >> i;
-					cin >> j;
-					cout << "Dzielenie podanych komorek to: " << wynik = tablica[x][y] / tablica[i][j];
+	cout << "Podaj wspolrzedne pierwszej komorki" << endl;
+	cin >> x;
+	cin >> y;
+	cout << "Podaj wspolrzedne drugiej komorki" << endl;
+	cin >> i;
+	cin >> j;
+
+	if ((*tablica).get_typy_kol(x)==0 && (*tablica).get_typy_kol(i)==0 )
+	{
+		if(stod(tablica->get_zawartosc_komorek(i, j))!=0)
+		{
+			wynik = stod(tablica->get_zawartosc_komorek(x, y)) / stod(tablica->get_zawartosc_komorek(i, j));
+			cout << "Dzielenie podanych komorek to: " << wynik;
+		}
+		else
+		{
+			cout << "Pamietaj cholero nie dziel przez zero" << endl;
+		}
+	}
+
+	else
+	{
+		cout <<"Podane komorki nie sa intami" << endl;
+	}
+
+}
 
 
+void sum_wg_kolumn (Tablica *tablica)
+{
+	int sumak=0;
+
+	for (int i = 0; i<tablica->get_kolumny(); i++)
+	{
+		sumak=0;
+		if(tablica->get_typy_kol(i)==0)
+		{
+			for(int j=0; j < tablica->get_wiersze(); j++)
+			{
+				sumak += stoi(tablica->get_zawartosc_komorek(i, j));
+			}
+			cout << "Suma wartosci kolumny [" << i << "] wynosi: " << sumak << endl;
+		}
+		else 
+		{
+			cout << "Kolumna nr [" << i << "] nie jest intowa" << endl;
+		}
+
+	}
+}
+
+
+
+int sum_wg_wierszy (Tablica *tablica)
+{
+    int sumaw = 0, sprawdzanie = 0;
+	for(int j=0; j < tablica->get_wiersze(); j++)
+	{
+		for (int i = 0; i < tablica->get_kolumny(); i++)
+		{
+			if (tablica->get_typy_kol(i) == 0)
+			{
+				sumaw += stoi(tablica->get_zawartosc_komorek(i, j));
+			}
+			else
+			{
+				sprawdzanie++;
+			}
+		}
+
+		if (sprawdzanie == tablica->get_kolumny())
+		{
+			std::cout << "W podanym wierszu nie ma liczb" << "\n";
+		}
+		else
+		{
+			cout << "W wierszu [" << j << "] suma wartosci komorek wynosi: " << sumaw << endl;
+		}
+		sumaw = 0;
+		sprawdzanie = 0;
+	}
+
+	return 0;
 }

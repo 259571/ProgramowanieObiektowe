@@ -32,5 +32,8 @@
 *.app
 *.json
 
-linux
+#catalogs
 html 
+latex
+CMakeFiles
+.vscode
