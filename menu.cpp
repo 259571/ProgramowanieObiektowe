@@ -36,9 +36,12 @@ void menu()
 		cout << "7. Dzielenie zawartosci komorek" << endl;
 		cout << "8. Sumowanie zawartosci wedlug kolumn" << endl;
 		cout << "9. Sumowanie zawartosci wedlug wierszy" << endl;
-		cout << "10. Zapis tablicy do pliku" << endl;
-		cout << "11. Wczytanie tablicy z pliku" << endl;
-		cout << "12. Wyscie z programu " << endl;
+		cout << "10. Najwieksza wartosc" << endl;
+		cout << "11. Najmniejsza wartosc" << endl;
+		cout << "12. Srednia wartosc" << endl;
+		cout << "13. Zapis tablicy do pliku" << endl;
+		cout << "14. Wczytanie tablicy z pliku" << endl;
+		cout << "15. Wyscie z programu " << endl;
 
 		opcja = wprowadz();
 
@@ -109,20 +112,41 @@ void menu()
 		{
 			sum_wg_wierszy (&arkusz);
 		}
-	
+		break;
+
 		case 10:
 		{
-			zapis_danych (&arkusz);
+			najwieksza_wartosc (&arkusz);
 		}
 		break;
 
 		case 11:
 		{
+			najmniejsza_wartosc(&arkusz);
+		}
+		break;
+
+		
+		case 12:
+		{
+			srednia_wartosc(&arkusz);
+		}
+		break;
+		
+
+		case 13:
+		{
+			zapis_danych (&arkusz);
+		}
+		break;
+
+		case 14:
+		{
 			wczyt_danych (&arkusz);
 		}
 		break;
 
-		case 12:
+		case 15:
 		{
 			exit(0);
 		}
